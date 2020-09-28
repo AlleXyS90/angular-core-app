@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="container__form">
+    <h1>User profile</h1>
+    <mat-card>
+      <mat-card-content>
+        <mat-tab-group mat-align-tabs="start">
+          <mat-tab label="Details">
+            <div *ngIf="(user$ | async) as user"
+                 class="tab-content"
+                 fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="20px">
+              <span class="tab-content__label">Username: <strong>{{user.userName}}</strong></span>
+              <span class="tab-content__label">Email address: <strong>{{user.email}}</strong></span>
+              <form [formGroup]="detailForm"
+                    fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px"
+                    fxLayout.xs="column" fxLayoutAlign.xs="space-between stretch">
+                <mat-form-field appearance="outline">
+                  <mat-label>First Name</mat-label>
+                  <input matInput formControlName="firstName">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Last Name</mat-label>
+                  <input matInput formControlName="lastName">
+                </mat-form-field>
+              </form>
+              <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px"
+                   fxLayout.xs="column" fxLayoutAlign.xs="space-between stretch">
+                <button mat-stroked-button (click)="cancel()">Cancel</button>
+                <button mat-raised-button color="warn" (click)="save()">Save</button>
+              </div>
+            </div>
+          </mat-tab>
+          <mat-tab label="Change password">
+            <div class="tab-content"
+                 fxLayout="row" fxLayoutAlign="center start">
+              <form [formGroup]="passwordForm"
+                    class="tab-content__password-form"
+                    fxFlex.xs
+                    fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+                <mat-form-field appearance="outline">
+                  <mat-label>Old Password</mat-label>
+                  <input type="password" autocomplete="on" matInput formControlName="oldPassword">
+                  <mat-error *ngIf="passwordForm.get('oldPassword').hasError('required')">
+                    Old password is required
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>New Password</mat-label>
+                  <input type="password" autocomplete="on" matInput formControlName="password">
+                  <mat-error *ngIf="passwordForm.get('password').hasError('required')">
+                    New password is required
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Confirm New Password</mat-label>
+                  <input type="password" autocomplete="on" matInput formControlName="confirmPassword">
+                  <mat-error *ngIf="passwordForm.get('confirmPassword').hasError('required')">
+                    Confirm password is required
+                  </mat-error>
+                  <span class="confirm-password"
+                        *ngIf="passwordForm.get('confirmPassword').touched &&
+                  passwordForm.hasError('mismatch')">
+                Passwords must match
+              </span>
+                </mat-form-field>
+                <button mat-raised-button color="accent"
+                        [disabled]="passwordForm.invalid"
+                        (click)="changePassword()">
+                  Change password
+                </button>
+              </form>
+            </div>
+          </mat-tab>
+          <mat-tab label="Settings">
+            <div class="tab-content">
+              <button mat-raised-button
+                      color="accent"
+                      (click)="deleteAccount()">
+                Delete account
+              </button>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

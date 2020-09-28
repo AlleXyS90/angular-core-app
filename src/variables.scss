@@ -1,0 +1,10 @@
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://www.google.com/design/spec/style/color.html
+
+$mat-blue: ( 50 : #e0edfd, 100 : #b3d3fb, 200 : #80b6f8, 300 : #4d99f5, 400 : #2683f2, 500 : #006df0, 600 : #0065ee, 700 : #005aec, 800 : #0050e9, 900 : #003ee5, A100 : #ffffff, A200 : #d9e1ff, A400 : #a6b8ff, A700 : #8ca4ff, contrast: ( 50 : #000000, 100 : #000000, 200 : #000000, 300 : #000000, 400 : #ffffff, 500 : #ffffff, 600 : #ffffff, 700 : #ffffff, 800 : #ffffff, 900 : #ffffff, A100 : #000000, A200 : #000000, A400 : #000000, A700 : #000000, ) );
+
+$primary: mat-palette($mat-blue);
+$accent: mat-palette($mat-pink, A200, A100, A400);
+$warn: mat-palette($mat-red);
+$theme: mat-light-theme($primary, $accent, $warn);

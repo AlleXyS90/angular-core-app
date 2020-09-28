@@ -1,0 +1,32 @@
+.title {
+  background: linear-gradient(63deg, #FE642E, #FE2E64);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 21px;
+  padding: 24px 0 20px;
+  margin-top: -24px;
+  margin-left: -24px;
+  margin-right: -24px;
+  text-align: center;
+  position: relative;
+
+  mat-icon {
+    position: absolute;
+    left: 10px;
+  }
+}
+
+.mat-dialog-content {
+  padding: 24px;
+  color: #666;
+  text-align: center;
+}
+
+.mat-dialog-actions {
+  margin-bottom: -15px;
+
+  .mat-icon {
+    margin-right: 10px
+  }
+}

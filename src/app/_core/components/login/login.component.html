@@ -1,0 +1,48 @@
+<div class="container"
+     fxLayout="row" fxLayoutAlign="start stretch"
+     fxLayout.xs="column">
+  <div class="container__left-side"
+       fxLayout="row" fxLayoutAlign="center center">
+    <h1>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h1>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center"
+       fxLayoutAlign.xs="center stretch">
+    <div class="container__right-side"
+         fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="40px">
+      <h1>Connect with us</h1>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <img src="../assets/img/login.jpg"
+             width="125"
+             height="125"/>
+      </div>
+      <form [formGroup]="loginForm"
+            (ngSubmit)="login()"
+            fxLayout="column" fxLayoutAlign="space-between stretch">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput autocomplete="on" formControlName="userName"/>
+          <mat-error *ngIf="loginForm.get('userName').hasError('required')">
+            Username is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput autocomplete="on" type="password" formControlName="password"/>
+          <mat-error *ngIf="loginForm.get('password').hasError('required')">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+        <button class="login-btn" mat-raised-button color="accent" type="submit"
+                [disabled]="!loginForm.valid">
+          SIGN IN
+        </button>
+        <div class="container__right-side__actions"
+             fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px"
+             fxLayout.xs="column" fxLayoutAlign.xs="space-between start">
+          <span>Don't have an account? <a href="/register">Sign Up</a></span>
+          <a (click)="goTo('forgot-password')">Forgot password</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

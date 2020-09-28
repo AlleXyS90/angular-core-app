@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\store",
+    "\\src\\app\\store\\auth",
+    "\\src\\app\\_core",
+    "\\src\\app\\_core\\components",
+    "\\src\\app\\_core\\components\\header",
+    "\\src\\app\\_core\\components\\login"
+  ],
+  "SelectedNode": "\\src\\app\\_core\\components\\header\\header.component.ts",
+  "PreviewInSolutionExplorer": false
+}

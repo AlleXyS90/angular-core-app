@@ -1,0 +1,82 @@
+.container {
+  height: calc(100% - 61px);
+  background: url('../../../../assets/img/landscape_2.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  &__left-side {
+    background-color: transparent;
+    color: #fff;
+    width: 50%;
+    padding: 20px;
+
+    h1 {
+      max-width: 250px;
+      text-align: center;
+    }
+  }
+
+  &__right-side {
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #BDBDBD;
+    min-width: 350px;
+    max-width: 450px;
+    padding: 36px 20px;
+
+    .confirm-password {
+      position: absolute;
+      margin-top: 0.6666666667em;
+      top: 100%;
+      display: block;
+      color: #f44336;
+      font-size: 75%;
+    }
+
+    .register-btn {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    &__sign-in {
+      color: #6E6E6E;
+      font-size: 12px;
+
+      a {
+        color: #00BFFF;
+        font-weight: 600;
+
+        &:hover {
+          color: #424242;
+        }
+        &:link,
+        &:visited {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 599px) {
+  .container {
+    padding: 10px;
+    height: unset;
+
+    &__left-side {
+      width: 100%;
+      padding: 25px 10px;
+
+      h1 {
+        font-weight: 700;
+        -webkit-text-stroke: 1px #848484;
+      }
+    }
+
+    &__right-side {
+      min-width: unset;
+    }
+  }
+}

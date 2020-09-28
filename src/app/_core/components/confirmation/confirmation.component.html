@@ -1,0 +1,18 @@
+<div class="title" mat-dialog-title>
+  <mat-icon>warning</mat-icon>
+  <span>{{data.title}}</span>
+</div>
+<mat-dialog-content>
+  <div>
+    {{data.message}}
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px"
+                    fxLayout.xs="column" fxLayoutAlign.xs="space-between stretch">
+  <button fxFlex.gt-xs="25" mat-stroked-button  (click)="cancel()">
+    <mat-icon>cancel</mat-icon> No
+  </button>
+  <button fxFlex.gt-xs="25" mat-raised-button color="accent" (click)="confirm()">
+    <mat-icon>check</mat-icon> Yes
+  </button>
+</mat-dialog-actions>

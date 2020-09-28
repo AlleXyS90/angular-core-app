@@ -1,0 +1,65 @@
+<div class="container"
+     fxLayout="row" fxLayoutAlign="start stretch"
+     fxLayout.xs="column">
+  <div class="container__left-side"
+       fxLayout="row" fxLayoutAlign="center center">
+    <h1>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h1>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center center"
+       fxLayoutAlign.xs="center stretch">
+    <div class="container__right-side"
+         fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="20px">
+      <h1>Register</h1>
+      <div fxLayout="row" fxLayoutAlign="center">
+        <img src="../assets/img/login.jpg"
+             width="125"
+             height="125"/>
+      </div>
+      <form [formGroup]="registerForm"
+            (ngSubmit)="register()"
+            fxLayout="column" fxLayoutAlign="space-between stretch">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput autocomplete="on" formControlName="userName"/>
+          <mat-error *ngIf="registerForm.get('userName').hasError('required')">
+            Username is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput autocomplete="on" formControlName="email"/>
+          <mat-error *ngIf="registerForm.get('email').hasError('required')">
+            Email is required
+          </mat-error>
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px"
+             fxLayout.xs="column" fxLayoutAlign.xs="space-between stretch" fxLayoutGap.xs="0">
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput autocomplete="on" type="password" formControlName="password"/>
+            <mat-error *ngIf="registerForm.get('password').hasError('required')">
+              Password is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput autocomplete="on" type="password" formControlName="confirmPassword"/>
+            <mat-error *ngIf="registerForm.get('confirmPassword').hasError('required')">
+              Confirm password is required
+            </mat-error>
+            <span class="confirm-password"
+                  *ngIf="registerForm.get('confirmPassword').touched &&
+                  registerForm.hasError('mismatch')">
+                Passwords must match
+              </span>
+          </mat-form-field>
+        </div>
+        <button class="register-btn" mat-raised-button color="accent" type="submit"
+                [disabled]="!registerForm.valid">
+          SIGN UP
+        </button>
+      </form>
+      <span class="container__right-side__sign-in">Already have an account? <a href="/login">Sign In</a></span>
+    </div>
+  </div>
+</div>

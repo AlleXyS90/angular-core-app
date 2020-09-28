@@ -1,0 +1,21 @@
+<div class="container"
+     fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+  <img src="../assets/img/angular_logo.png"
+       width="40"
+       height="40"
+       (click)="goTo('home')"
+       style="cursor: pointer" />
+  <ng-container *ngIf="user$ | async as user else authentication">
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+      <button mat-stroked-button color="primary" (click)="goTo('profile')">Profile</button>
+      <button mat-stroked-button color="primary" (click)="logout()">Log out {{user.userName}}</button>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #authentication>
+  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <button mat-stroked-button color="primary" (click)="goTo('login')">Login</button>
+    <button mat-raised-button color="accent" (click)="goTo('register')">Register</button>
+  </div>
+</ng-template>

@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": 3,
+      "userName": "alex",
+      "password": "1234",
+      "email": "adi@yahoo.com",
+      "firstName": "Tudor",
+      "lastName": "Alexandru - Adrian"
+    },
+    {
+      "userName": "ttt",
+      "password": "123",
+      "email": "asd@asd.ro",
+      "id": 5
+    },
+    {
+      "userName": "tttt",
+      "password": "123",
+      "email": "adasd@asfas.ro",
+      "id": 6
+    },
+    {
+      "userName": "sdasdasd",
+      "password": "11",
+      "email": "asdasd@fasf.ro",
+      "id": 7
+    },
+    {
+      "userName": "asdasd",
+      "password": "123",
+      "email": "sdfsdf@sfsfd.ro",
+      "id": 8
+    }
+  ]
+}

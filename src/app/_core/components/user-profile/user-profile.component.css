@@ -1,0 +1,31 @@
+.container {
+  min-height: 500px;
+  padding: 10px;
+}
+.container__form {
+  max-width: 800px;
+  margin: 5vw auto 0;
+  padding: 10px;
+}
+.container__form .mat-tab-group .tab-content {
+  margin-top: 30px;
+}
+.container__form .mat-tab-group .tab-content__label {
+  font-weight: 500;
+}
+.container__form .mat-tab-group .tab-content__password-form {
+  min-width: 300px;
+}
+.container__form .mat-tab-group .tab-content__password-form .confirm-password {
+  position: absolute;
+  margin-top: 0.6666666667em;
+  top: 100%;
+  display: block;
+  color: #f44336;
+  font-size: 75%;
+}
+.container__form .mat-form-field {
+  width: 100%;
+}
+
+/*# sourceMappingURL=user-profile.component.css.map */

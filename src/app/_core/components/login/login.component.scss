@@ -1,0 +1,83 @@
+.container {
+  //background: rgb(2,0,36);
+  //background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(16,21,75,1) 34%, rgba(140,21,3,1) 100%);
+  height: calc(100% - 61px);
+  background: url('../../../../assets/img/landscape_1.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  &__left-side {
+    background-color: transparent;
+    color: #fff;
+    width: 55%;
+    padding: 20px;
+
+    h1 {
+      max-width: 250px;
+      text-align: center;
+    }
+  }
+
+  &__right-side {
+    background-color: #fff;
+    border: 1px solid #BDBDBD;
+    border-radius: 5px;
+    min-width: 400px;
+    max-width: 450px;
+    padding: 48px 20px;
+
+    .login-btn {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    &__actions {
+      margin-top: 10px;
+
+      span {
+        color: #6E6E6E;
+        font-size: 12px;
+      }
+
+      a {
+        color: #00BFFF;
+        font-weight: 600;
+        font-size: 12px;
+
+        &:hover {
+          color: #424242;
+        }
+
+        &:link,
+        &:visited {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+}
+
+@media only screen and (max-width: 599px) {
+  .container {
+    padding: 10px;
+    height: unset;
+
+    &__left-side {
+      width: 100%;
+      padding: 25px 10px;
+
+      h1 {
+        font-weight: 700;
+        -webkit-text-stroke: 1px #848484;
+      }
+    }
+
+    &__right-side {
+      min-width: unset;
+      max-width: unset;
+    }
+  }
+}
