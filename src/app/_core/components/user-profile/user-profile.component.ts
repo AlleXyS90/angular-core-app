@@ -4,7 +4,7 @@ import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {filter, last, map} from 'rxjs/operators';
 
-import * as fromAuth from '../../../store/auth';
+import * as fromUser from '../../../store/user';
 import {AppState} from '../../../store';
 import {MetaService} from '../../../_shared/services/meta.service';
 import {Meta, MetaList} from '../../../_shared/models/meta';
@@ -39,9 +39,9 @@ export class UserProfileComponent implements OnInit {
     this.metaService.set(MetaList.get(Meta.PROFILE));
     this.buildForm();
 
-    this.store.dispatch(new fromAuth.GetMeAction());
+    this.store.dispatch(new fromUser.GetMeAction());
     this.user$ = this.store.pipe(
-      select(fromAuth.selectUserProfile)).pipe(
+      select(fromUser.selectUserProfile)).pipe(
       filter(x => x.requestStatus.status === Status.COMPLETED),
       map(userState => {
         const user = userState.domain;
@@ -98,11 +98,11 @@ export class UserProfileComponent implements OnInit {
       lastName
     };
 
-    this.store.dispatch(new fromAuth.UpdateProfileAction(payload));
+    this.store.dispatch(new fromUser.UpdateProfileAction(payload));
   }
 
   deleteAccount(): void {
-    this.store.dispatch(new fromAuth.DeleteUserAction(this.user.id));
+    this.store.dispatch(new fromUser.DeleteUserAction(this.user.id));
   }
 
   changePassword(): void {
@@ -111,6 +111,6 @@ export class UserProfileComponent implements OnInit {
       userId: this.user.id
     };
 
-    this.store.dispatch(new fromAuth.ChangePasswordAction(payload));
+    this.store.dispatch(new fromUser.ChangePasswordAction(payload));
   }
 }

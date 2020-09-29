@@ -11,9 +11,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CoreModule} from './_core/core.module';
 import {SharedModule} from './_shared/shared.module';
+import {AuthInterceptor} from './_shared/interceptors/auth.interceptor';
 import {appReducers} from './store';
 import {AuthEffects} from './store/auth/auth.effects';
-import {AuthInterceptor} from './_shared/interceptors/auth.interceptor';
+import {UserEffects} from './store/user/user.effects';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import {AuthInterceptor} from './_shared/interceptors/auth.interceptor';
     BrowserAnimationsModule,
     HttpClientModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, UserEffects]),
     StoreDevtoolsModule.instrument({maxAge: 30, logOnly: !environment.production})
   ],
   declarations: [

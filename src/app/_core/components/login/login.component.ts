@@ -4,6 +4,7 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {select, Store} from '@ngrx/store';
 
 import * as fromAuth from '../../../store/auth';
+import * as fromUser from '../../../store/user';
 import {MetaService} from '../../../_shared/services/meta.service';
 import {UserLogin} from '../../models/user-login';
 import {AppState} from '../../../store/index';
@@ -29,9 +30,9 @@ export class LoginComponent implements OnInit {
     this.metaService.set(MetaList.get(Meta.LOGIN));
 
     this.store.pipe(
-      select(fromAuth.selectUser)
+      select(fromUser.selectUserProfile)
     ).subscribe(user => {
-      if (user) {
+      if (user.domain) {
         this.router.navigateByUrl('/');
       }
     });

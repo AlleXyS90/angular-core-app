@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
-import {AppState} from '../../../store';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
-import {MetaService} from '../../../_shared/services/meta.service';
 import * as fromAuth from '../../../store/auth';
+import * as fromUser from '../../../store/user';
+import {AppState} from '../../../store';
+import {MetaService} from '../../../_shared/services/meta.service';
 import {UserRegister} from '../../models/user-register';
 import {Meta, MetaList} from '../../../_shared/models/meta';
 
@@ -29,9 +30,9 @@ export class RegisterComponent implements OnInit {
     this.metaService.set(MetaList.get(Meta.REGISTER));
 
     this.store.pipe(
-      select(fromAuth.selectUser)
+      select(fromUser.selectUserProfile)
     ).subscribe(user => {
-      if (user) {
+      if (user.domain) {
         this.router.navigateByUrl('/');
       }
     });
@@ -61,8 +62,7 @@ export class RegisterComponent implements OnInit {
       password: this.registerForm.get('password').value,
       email: this.registerForm.get('email').value
     };
-    console.log(user);
+
     this.store.dispatch(new fromAuth.RegisterAction(user));
   }
-
 }
