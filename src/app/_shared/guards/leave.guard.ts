@@ -25,8 +25,10 @@ export class LeaveGuard implements CanDeactivate<any> {
       select(fromAuth.selectAuthenticationStatus),
       switchMap(status => {
         if (status !== true) {
+          console.log('auth status = false; return CanLeave');
           return of(true);
         } else {
+          console.log(`canLeave = ${component.canLeave}. if FALSE, open POPUP`);
           return component.canLeave === true ? of(true) : this.matDialog.open(ConfirmationComponent, {
             width: '500px',
             data: { title: 'Leave page', message: 'Do you really want to leave this page? All modified data will be lost.' }

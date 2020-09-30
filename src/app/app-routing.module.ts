@@ -35,7 +35,7 @@ const routes: Routes = [
     path: 'profile',
     component: UserProfileComponent,
     canActivate: [AuthGuard],
-    canDeactivate: [LeaveGuard]
+   // canDeactivate: [LeaveGuard]
   },
   {
     path: 'home',

@@ -96,7 +96,7 @@ export class CheckAuthenticationStatusAction implements Action {
 export class InitializeFromStorageAction implements Action {
   readonly type = AuthActionTypes.INITIALIZE_FROM_STORAGE;
 
-  constructor(public payload: User) {
+  constructor(public payload: [Token, User]) {
   }
 }
 

@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Actions, Effect, ofType} from '@ngrx/effects';
+import {Actions, createEffect, Effect, ofType} from '@ngrx/effects';
 import {select, Store} from '@ngrx/store';
 import {Router} from '@angular/router';
-import {catchError, first, map, mergeMap, switchMap, tap} from 'rxjs/operators';
+import {catchError, combineLatest, concatMap, first, map, mergeMap, switchMap, tap, withLatestFrom} from 'rxjs/operators';
 import {Observable, of} from 'rxjs';
 
-import * as fromAuth from './auth.selectors';
 import * as fromUser from '../user/user.actions';
+import * as fromUserSelect from '../user/user.selectors';
 import {
   AuthActionTypes,
   LoginAction,
@@ -60,8 +60,7 @@ export class AuthEffects {
   logInSuccess: Observable<any> = this.actions$.pipe(
     ofType(AuthActionTypes.LOGIN_SUCCESS),
     tap((action: LoginSuccessAction) => {
-      localStorage.setItem('token', JSON.stringify(action.payload.token));
-      localStorage.setItem('token_expiration', JSON.stringify(action.payload.expiration));
+      localStorage.setItem('token', JSON.stringify(action.payload));
       this.alertService.show('Logged in successfully');
       this.router.navigateByUrl('/');
     })
@@ -155,10 +154,13 @@ export class AuthEffects {
     map((action: CheckAuthenticationStatusAction) => action),
     first(),
     tap(() => {
+      const tokenJson = this.authService.getToken();
       const currentUserJson = localStorage.getItem(this.authService.currentUserKey);
-      if (currentUserJson) {
+      if (tokenJson && currentUserJson) {
+        const token = JSON.parse(tokenJson) as Token;
         const user = JSON.parse(currentUserJson) as User;
-        this.store.dispatch(new InitializeFromStorageAction(user));
+        this.store.dispatch(new InitializeFromStorageAction([token, user]));
+        this.store.dispatch(new fromUser.InitializeFromStorageAction(user));
       }
     })
   );

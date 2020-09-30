@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit {
     this.metaService.set(MetaList.get(Meta.LOGIN));
 
     this.store.pipe(
-      select(fromUser.selectUserProfile)
+      select(fromAuth.selectAuthenticationStatus)
     ).subscribe(user => {
-      if (user.domain) {
+      if (status) {
         this.router.navigateByUrl('/');
       }
     });

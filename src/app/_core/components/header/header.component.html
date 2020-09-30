@@ -4,11 +4,24 @@
        width="40"
        height="40"
        (click)="goTo('home')"
-       style="cursor: pointer" />
+       style="cursor: pointer"/>
   <ng-container *ngIf="user$ | async as user else authentication">
     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
-      <button mat-stroked-button color="primary" (click)="goTo('profile')">Profile</button>
-      <button mat-stroked-button color="primary" (click)="logout()">Log out {{user.userName}}</button>
+      <button mat-mini-fab color="primary" [matMenuTriggerFor]="profileMenu">{{userLetter}}</button>
+      <mat-menu #profileMenu="matMenu">
+        <mat-nav-list>
+          <mat-list-item (click)="goTo('profile')">
+            <fa-icon class="container__icon"
+                     [icon]="faUserCircle" size="1x"></fa-icon>
+            <span class="container__menu-label">My profile</span>
+          </mat-list-item>
+          <mat-list-item (click)="logout()">
+            <fa-icon class="container__icon"
+                     [icon]="faSignOutAlt" size="1x"></fa-icon>
+            <span class="container__menu-label">Logout</span>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-menu>
     </div>
   </ng-container>
 </div>

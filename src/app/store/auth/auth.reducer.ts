@@ -148,8 +148,9 @@ export function authReducer(state: AuthState = authInitialState, action: AuthAct
     case AuthActionTypes.INITIALIZE_FROM_STORAGE: {
       return {
         ...state,
-        user: action.payload,
-        userEntity: userAdapter.addOne(action.payload, userAdapter.getInitialState()),
+        token: action.payload[0],
+        user: action.payload[1],
+        userEntity: userAdapter.addOne(action.payload[1], userAdapter.getInitialState()),
         isAuthenticated: true
       };
     }

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {filter, last, map} from 'rxjs/operators';
+import {filter, map, take} from 'rxjs/operators';
 
 import * as fromUser from '../../../store/user';
 import {AppState} from '../../../store';
@@ -43,6 +43,7 @@ export class UserProfileComponent implements OnInit {
     this.user$ = this.store.pipe(
       select(fromUser.selectUserProfile)).pipe(
       filter(x => x.requestStatus.status === Status.COMPLETED),
+      take(1),
       map(userState => {
         const user = userState.domain;
         this.user = user;

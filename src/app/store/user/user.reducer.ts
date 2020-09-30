@@ -1,6 +1,7 @@
 import {DomainStatus, initialRequestStatus, Status} from '../../_shared/models/domain-status';
 import {User} from '../../_core/models/user';
 import {UserActions, UserActionTypes} from './user.actions';
+import {AuthActionTypes, userAdapter} from '../auth';
 
 export interface UserState {
   userProfile: DomainStatus<User>;
@@ -21,7 +22,7 @@ export const userInitialState: UserState = {
     domain: undefined,
     requestStatus: initialRequestStatus
   }
-}
+};
 
 export function userReducer(state: UserState = userInitialState, action: UserActions): UserState {
   switch (action.type) {
@@ -169,7 +170,20 @@ export function userReducer(state: UserState = userInitialState, action: UserAct
         }
       };
     }
+    case UserActionTypes.INITIALIZE_FROM_STORAGE: {
+      return {
+        ...state,
+        userProfile: {
+          domain: action.payload,
+          requestStatus: {
+            errorMessage: undefined,
+            status: Status.NEW
+          }
+        }
+      };
+    }
     case UserActionTypes.RESET_STORE: {
+      console.log('reset store');
       return {
         ...userInitialState
       };

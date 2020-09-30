@@ -51,7 +51,7 @@ export class UserEffects {
   getMeSuccess: Observable<any> = this.actions$.pipe(
     ofType(UserActionTypes.GET_ME_SUCCESS),
     tap((action: GetMeSuccessAction) => {
-      console.log('no side effects here');
+      localStorage.setItem('user', JSON.stringify(action.payload));
     })
   );
 

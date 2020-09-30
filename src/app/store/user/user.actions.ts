@@ -1,11 +1,12 @@
 import {Action} from '@ngrx/store';
 import {User} from '../../_core/models/user';
 import {NewPassword} from '../../_core/models/new-password';
+import {AuthActionTypes} from '../auth';
 
 export enum UserActionTypes {
-  GET_ME = '[Auth] Get me',
-  GET_ME_SUCCESS = '[Auth] Get me success',
-  GET_ME_FAILED = '[Auth] Get me failed',
+  GET_ME = '[User] Get me',
+  GET_ME_SUCCESS = '[User] Get me success',
+  GET_ME_FAILED = '[User] Get me failed',
   UPDATE_PROFILE = '[Users] Update profile',
   UPDATE_PROFILE_SUCCESS = '[Users] Update profile success',
   UPDATE_PROFILE_FAILED = '[Users] Update profile failed',
@@ -15,6 +16,7 @@ export enum UserActionTypes {
   CHANGE_PASSWORD = '[Users] Change password',
   CHANGE_PASSWORD_SUCCESS = '[Users] Change password success',
   CHANGE_PASSWORD_FAILED = '[Users] Change password failed',
+  INITIALIZE_FROM_STORAGE = '[Users] Initialize from storage',
   RESET_STORE = '[Users] Reset store'
 }
 
@@ -97,6 +99,13 @@ export class ChangePasswordFailedAction implements Action {
   }
 }
 
+export class InitializeFromStorageAction implements Action {
+  readonly type = UserActionTypes.INITIALIZE_FROM_STORAGE;
+
+  constructor(public payload: User) {
+  }
+}
+
 export class ResetStoreAction implements Action {
   readonly type = UserActionTypes.RESET_STORE;
 }
@@ -106,4 +115,4 @@ export type UserActions =
   UpdateProfileAction | UpdateProfileSuccessAction | UpdateProfileFailedAction |
   DeleteUserAction | DeleteUserSuccessAction | DeleteUserFailedAction |
   ChangePasswordAction | ChangePasswordSuccessAction | ChangePasswordFailedAction |
-  ResetStoreAction;
+  InitializeFromStorageAction | ResetStoreAction;

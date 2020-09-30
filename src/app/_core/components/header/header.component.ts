@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {filter, map} from 'rxjs/operators';
+import {faUserCircle, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 
 import * as fromAuth from '../../../store/auth';
 import * as fromUser from '../../../store/user';
@@ -18,7 +19,9 @@ import {Status} from '../../../_shared/models/domain-status';
 export class HeaderComponent implements OnInit {
 
   public user$: Observable<User>;
-  isAuthenticated = false;
+  userLetter = '';
+  faUserCircle = faUserCircle;
+  faSignOutAlt = faSignOutAlt;
 
   constructor(
     private store: Store<AppState>,
@@ -29,7 +32,14 @@ export class HeaderComponent implements OnInit {
     this.user$ = this.store.pipe(
       select(fromUser.selectUserProfile),
       filter(x => x.requestStatus.status !== Status.PENDING),
-      map(user => user.domain)
+      map(userState => {
+        const user = userState.domain;
+        if (user) {
+          this.userLetter = user.userName.substring(0, 1).toUpperCase();
+        }
+
+        return user;
+      })
     );
   }
 
